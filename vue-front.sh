@@ -7,7 +7,7 @@ git clean -f
 echo "拉取最新代码"
 git pull origin master
 echo "打包最新代码"
-git run build
+npm run build
 echo "开始构建镜像"
 docker build -t vue-front:1.0 .
 echo "删除旧容器"
