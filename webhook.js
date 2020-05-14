@@ -24,6 +24,7 @@ let server = http.createServer(function (req, res) {
       }
       res.setHeader('Content-Type', 'application/json');
       res.end(JSON.stringify({ "ok": true }));
+      console.log(event);
       if (event === 'push') {
         let payload = JSON.parse(body);
         let child = spawn('sh', [`./${payload.repository.name}`.sh]);
@@ -33,6 +34,7 @@ let server = http.createServer(function (req, res) {
         })
         child.stdout.on('end', function () {
           let logs = Buffer.concat(buffers).toString();
+          console.log(logs);
           sendMail(`
             <h1>
               <h2>部署日期：${new Date()}</h2>
@@ -45,7 +47,7 @@ let server = http.createServer(function (req, res) {
         })
       }
     })
-  }else{
+  } else {
     res.end('Not Found')
   }
 })
