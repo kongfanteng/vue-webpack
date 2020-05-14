@@ -1,0 +1,6 @@
+as]
+    a = add -A
+    c = commit -m"msg"
+    p = push origin master
+    ps = add -A && commmit -m 'mark' && push origin master
+    pu = pull origin master
